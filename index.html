@@ -11,6 +11,7 @@
             padding: 0;
             background-color: #ffccff; /* Change background color to pink */
             overflow: hidden; /* Prevent scrolling */
+            position: relative; /* Position for absolute elements */
         }
 
         #floating-hearts {
@@ -52,8 +53,9 @@
         }
 
         #imageBlock {
-            text-align: center;
-            margin-top: 50px;
+            text-align: right; /* Align the image to the right */
+            margin-top: 20px;
+            margin-right: 20px; /* Provide some margin from the top and right */
             color: #333; /* Change text color to dark */
         }
 
@@ -61,14 +63,10 @@
             font-size: 24px;
         }
 
-        #uploadedImageBlock {
-            margin-top: 20px;
-        }
-
         #uploadedImage {
             max-width: 100%;
+            max-height: 200px; /* Set maximum height */
             border-radius: 10px;
-            display: none;
         }
 
         #countdown {
@@ -91,12 +89,7 @@
         <h2>Your Special Moment</h2>
 
         <!-- Display Image from GitHub -->
-        <img src="https://github.com/mbalomenos/valentina/raw/main/viber_image_2024-02-03_10-07-21-650.jpg" alt="Your Special Moment">
-
-        <!-- Display Uploaded Image (optional, you can remove this part if not needed) -->
-        <div id="uploadedImageBlock">
-            <img id="uploadedImage" alt="Uploaded Image">
-        </div>
+        <img src="https://github.com/mbalomenos/valentina/raw/main/viber_image_2024-02-03_10-07-21-650.jpg" alt="Your Special Moment" id="uploadedImage">
     </div>
 
     <!-- Countdown to Valentine's Day -->
