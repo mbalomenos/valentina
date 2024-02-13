@@ -35,13 +35,20 @@
                 0% 29%
             );
             transform: translate(-50%, -50%);
-            animation: float 3s ease-in-out infinite alternate;
+            animation: float 1s ease-in-out infinite alternate; /* Faster animation */
         }
 
         @keyframes float {
             to {
                 transform: translate(-50%, -55%);
             }
+        }
+
+        #title {
+            text-align: center;
+            font-size: 24px;
+            color: #333;
+            margin-top: 30px;
         }
 
         #imageBlock {
@@ -52,21 +59,6 @@
 
         #imageBlock h2 {
             font-size: 24px;
-        }
-
-        #imageFileInput {
-            display: none;
-        }
-
-        label[for="imageFileInput"] {
-            cursor: pointer;
-            background-color: #ff4d4d;
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-size: 16px;
-            margin-top: 20px;
-            display: inline-block;
         }
 
         #uploadedImageBlock {
@@ -85,13 +77,6 @@
             color: #333;
             margin-top: 30px;
         }
-
-        #title {
-            text-align: center;
-            font-size: 24px;
-            color: #333;
-            margin-top: 30px;
-        }
     </style>
 </head>
 <body>
@@ -104,11 +89,11 @@
 
     <div id="imageBlock">
         <h2>Your Special Moment</h2>
-        <!-- Upload Image Button -->
-        <input type="file" id="imageFileInput" accept="image/*">
-        <label for="imageFileInput">Upload a Picture</label>
 
-        <!-- Display Uploaded Image -->
+        <!-- Display Image from GitHub -->
+        <img src="https://github.com/mbalomenos/valentina/raw/main/viber_image_2024-02-03_10-07-21-650.jpg" alt="Your Special Moment">
+
+        <!-- Display Uploaded Image (optional, you can remove this part if not needed) -->
         <div id="uploadedImageBlock">
             <img id="uploadedImage" alt="Uploaded Image">
         </div>
@@ -118,26 +103,6 @@
     <div id="countdown"></div>
 
     <script>
-        // Handle image file input change
-        const imageFileInput = document.getElementById("imageFileInput");
-        const uploadedImageBlock = document.getElementById("uploadedImageBlock");
-        const uploadedImage = document.getElementById("uploadedImage");
-
-        imageFileInput.addEventListener("change", function (event) {
-            const file = event.target.files[0];
-
-            if (file) {
-                const reader = new FileReader();
-
-                reader.onload = function (e) {
-                    uploadedImage.src = e.target.result;
-                    uploadedImageBlock.style.display = "block";
-                };
-
-                reader.readAsDataURL(file);
-            }
-        });
-
         // Countdown to Valentine's Day
         const countdownElement = document.getElementById("countdown");
         const valentinesDay = new Date("2024-02-14T00:00:00Z").getTime();
@@ -169,7 +134,7 @@
             heart.className = "heart";
             heart.style.left = Math.random() * 100 + "vw";
             heart.style.top = Math.random() * 100 + "vh";
-            heart.style.animationDuration = Math.random() * 6 + 3 + "s";
+            heart.style.animationDuration = Math.random() * 3 + 1 + "s"; // Faster hearts
             heart.style.animationDirection = Math.random() < 0.5 ? "reverse" : "normal";
             heart.innerHTML = "❤";
             floatingHearts.appendChild(heart);
