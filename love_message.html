@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Message</title>
+</head>
+<body>
+
+    <h1>Ποιον αγαπάς;</h1>
+    
+    <label for="name">Type a name:</label>
+    <input type="text" id="name" name="name" required>
+    <button onclick="checkLove()">Check Love</button>
+
+    <div id="loveMessage"></div>
+
+    <script>
+        function checkLove() {
+            var inputName = document.getElementById("name").value;
+            var loveMessageDiv = document.getElementById("loveMessage");
+
+            if (inputName.trim().toLowerCase() === "ματθαίο") {
+                var lovePhrases = {
+                    'Greek': 'Σ\' αγαπώ Βασιλική',
+                    'Italian': 'Ti amo Basilica',
+                    'French': 'Je t\'aime Basilique',
+                    'Spanish': 'Te quiero Basílica',
+                    'German': 'Ich liebe dich Basilika',
+                    'Portuguese': 'Eu te amo Basílica',
+                    'Russian': 'Я тебя люблю Василиса (Ya tebya lyublyu Vasilisa)',
+                    'Japanese': '愛してる バシリカ (Aishiteru Bashirika)',
+                    'Chinese': '我爱你 圣殿 (Wǒ ài nǐ Shèngdiàn)',
+                    'Korean': '사랑해 바실리카 (Salanghae Basilica)',
+                    'Arabic': 'أنا أحبك بازيليكا (Ana ohibbuka Bazilika)',
+                    'Dutch': 'Ik hou van jou Basiliek',
+                    // Add more languages as needed
+                };
+
+                loveMessageDiv.innerHTML = '<h2>I Love You Βασιλική</h2>';
+                
+                var languages = Object.keys(lovePhrases);
+                languages.forEach(function(language) {
+                    loveMessageDiv.innerHTML += `<p>${lovePhrases[language]} (${language})</p>`;
+                });
+            } else {
+                loveMessageDiv.innerHTML = '<p>No love message for this name.</p>';
+            }
+        }
+    </script>
+
+</body>
+</html>
