@@ -78,6 +78,13 @@
             border-radius: 10px;
             display: none;
         }
+
+        #countdown {
+            text-align: center;
+            font-size: 24px;
+            color: #333;
+            margin-top: 30px;
+        }
     </style>
 </head>
 <body>
@@ -95,6 +102,9 @@
             <img id="uploadedImage" alt="Uploaded Image">
         </div>
     </div>
+
+    <!-- Countdown to Valentine's Day -->
+    <div id="countdown"></div>
 
     <script>
         // Handle image file input change
@@ -116,6 +126,28 @@
                 reader.readAsDataURL(file);
             }
         });
+
+        // Countdown to Valentine's Day
+        const countdownElement = document.getElementById("countdown");
+        const valentinesDay = new Date("2024-02-14T00:00:00Z").getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const timeRemaining = valentinesDay - now;
+
+            const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+            countdownElement.innerHTML = `Countdown: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }
+
+        // Update countdown every second
+        setInterval(updateCountdown, 1000);
+
+        // Initial update
+        updateCountdown();
 
         // Add many floating hearts to the background
         const floatingHearts = document.getElementById("floating-hearts");
