@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Day Greeting</title>
     <style>
         body {
             margin: 0;
             overflow: hidden;
             background-color: #f7dada;
+            font-family: 'Arial', sans-serif;
         }
 
         #floating-hearts {
@@ -16,21 +20,6 @@
             left: 0;
             pointer-events: none;
             z-index: -1;
-        }
-
-        .heart {
-            position: absolute;
-            color: #e73c7e; /* Adjust heart color as needed */
-            animation: floatHeart linear infinite;
-        }
-
-        @keyframes floatHeart {
-            0%, 100% {
-                transform: translateY(0) translateX(0);
-            }
-            50% {
-                transform: translateY(-15vh) translateX(calc(15vw - 30vw));
-            }
         }
 
         #content {
@@ -46,7 +35,17 @@
             margin-bottom: 20px;
         }
 
-        input[type="file"] {
+        h1 {
+            color: #333;
+        }
+
+        #countdown {
+            font-size: 24px;
+            color: #333;
+            margin-top: 20px;
+        }
+
+        #fileInput {
             display: none;
         }
 
@@ -61,104 +60,130 @@
             display: inline-block;
         }
 
-        img {
+        #uploadedImage {
             max-width: 100%;
             border-radius: 10px;
             margin-top: 20px;
         }
 
-        p {
+        #loveMessage {
             font-size: 18px;
             color: #333;
             margin-top: 20px;
         }
 
-        #countdown {
-            font-size: 24px;
-            color: #333;
-            margin-top: 20px;
+        .heart {
+            position: absolute;
+            display: block;
+            width: 20px;
+            height: 20px;
+            background-color: pink;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            animation: float 5s infinite linear;
+            transform: rotate(45deg);
+            opacity: 0.8;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            25% {
+                transform: translate(0, -30vh);
+            }
+
+            50% {
+                transform: translate(0, 0);
+            }
+
+            75% {
+                transform: translate(0, -15vh);
+            }
+
+            100% {
+                transform: translate(0, 0);
+            }
         }
     </style>
 </head>
+
 <body>
+    <!-- Floating Hearts Container -->
     <div id="floating-hearts"></div>
 
+    <!-- Main Content -->
     <div id="content">
-        <div id="title">
-            Ανυπομονώ να γιορτάσω την αγάπη μας μαζί σου Βασιλική...
-        </div>
+        <!-- Title -->
+        <div id="title">Ανυπομονώ να γιορτάσω την αγάπη μας μαζί σου Βασιλική...</div>
 
+        <!-- Greeting -->
         <h1>Happy Valentine's Day!</h1>
-        
+
+        <!-- Countdown Timer -->
         <div id="countdown"></div>
 
+        <!-- Upload Image Button -->
         <input type="file" id="fileInput" accept="image/*">
         <label for="fileInput">Upload a Picture</label>
 
+        <!-- Uploaded Image -->
         <img id="uploadedImage" alt="Uploaded Image">
 
-        <p id="loveMessage"></p>
+        <!-- Love Message -->
+        <p id="loveMessage">You mean the world to me. I love you forever and always!</p>
     </div>
 
+    <!-- Script for Floating Hearts, File Upload, and Countdown -->
     <script>
-        // Add many floating hearts to the background
-        const floatingHearts = document.getElementById("floating-hearts");
-        const numberOfHearts = 100;
+        document.addEventListener("DOMContentLoaded", function () {
+            // Add many floating hearts to the background
+            const floatingHearts = document.getElementById("floating-hearts");
+            const numberOfHearts = 100;
 
-        for (let i = 0; i < numberOfHearts; i++) {
-            const heart = document.createElement("div");
-            heart.className = "heart";
-            heart.style.left = Math.random() * 100 + "vw";
-            heart.style.top = Math.random() * 100 + "vh";
-            heart.style.animationDuration = Math.random() * 6 + 3 + "s"; // Adjust the duration as needed
-            heart.style.animationDirection = Math.random() < 0.5 ? "reverse" : "normal";
-            heart.innerHTML = "❤";
-            floatingHearts.appendChild(heart);
-        }
-
-        // Handle file input change
-        const fileInput = document.getElementById("fileInput");
-        const uploadedImage = document.getElementById("uploadedImage");
-
-        fileInput.addEventListener("change", function (event) {
-            const file = event.target.files[0];
-
-            if (file) {
-                const reader = new FileReader();
-
-                reader.onload = function (e) {
-                    uploadedImage.src = e.target.result;
-                };
-
-                reader.readAsDataURL(file);
+            for (let i = 0; i < numberOfHearts; i++) {
+                const heart = document.createElement("div");
+                heart.className = "heart";
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.top = Math.random() * 100 + "vh";
+                heart.style.animationDuration = Math.random() * 6 + 3 + "s";
+                heart.style.animationDirection = Math.random() < 0.5 ? "reverse" : "normal";
+                floatingHearts.appendChild(heart);
             }
-        });
 
-        // Set love message
-        const loveMessage = document.getElementById("loveMessage");
-        loveMessage.innerText = "You mean the world to me. I love you forever and always!";
+            // Handle file input change
+            const fileInput = document.getElementById("fileInput");
+            const uploadedImage = document.getElementById("uploadedImage");
 
-        // Countdown to Valentine's Day
-        const countdownElement = document.getElementById("countdown");
-        const valentinesDay = new Date("2024-02-14T00:00:00Z").getTime();
+            fileInput.addEventListener("change", function (event) {
+                const file = event.target.files[0];
 
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const timeRemaining = valentinesDay - now;
+                if (file) {
+                    const reader = new FileReader();
 
-            const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+                    reader.onload = function (e) {
+                        uploadedImage.src = e.target.result;
+                    };
 
-            countdownElement.innerHTML = `Countdown: ${days}d ${hours}h ${minutes}m ${seconds}s`;
-        }
+                    reader.readAsDataURL(file);
+                }
+            });
 
-        // Update countdown every second
-        setInterval(updateCountdown, 1000);
+            // Countdown to Valentine's Day
+            const countdownElement = document.getElementById("countdown");
+            const valentinesDay = new Date("2024-02-14T00:00:00Z").getTime();
 
-        // Initial update
-        updateCountdown();
-    </script>
-</body>
-</html>
+            function updateCountdown() {
+                const now = new Date().getTime();
+                const timeRemaining = valentinesDay - now;
+
+                const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+                countdownElement.innerHTML = `Countdown: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+            }
+
+            // Update countdown every second
+            setInterval(updateCountdown
