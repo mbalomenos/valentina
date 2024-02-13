@@ -48,6 +48,30 @@
             margin-top: 20px;
             font-size: 20px;
         }
+
+        /* Add pink hearts for the Love Message page */
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #ff99cc; /* Change heart color to pink */
+            clip-path: polygon(
+                50% 0%,
+                100% 20%,
+                75% 100%,
+                50% 75%,
+                25% 100%,
+                0% 20%
+            );
+            transform: translate(-50%, -50%);
+            animation: float 1s ease-in-out infinite alternate; /* Same animation speed as main page */
+        }
+
+        @keyframes float {
+            to {
+                transform: translate(-50%, -55%);
+            }
+        }
     </style>
 </head>
 <body>
@@ -59,6 +83,27 @@
     <button onclick="checkLove()">Check Love</button>
 
     <div id="loveMessage"></div>
+
+    <!-- Add pink hearts for the Love Message page -->
+    <div id="floating-hearts">
+        <!-- Add many floating hearts to the background -->
+        <div id="floating-hearts"></div>
+        <script>
+            const floatingHearts = document.getElementById("floating-hearts");
+            const numberOfHearts = 100;
+
+            for (let i = 0; i < numberOfHearts; i++) {
+                const heart = document.createElement("div");
+                heart.className = "heart";
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.top = Math.random() * 100 + "vh";
+                heart.style.animationDuration = Math.random() * 3 + 1 + "s"; // Same animation speed as main page
+                heart.style.animationDirection = Math.random() < 0.5 ? "reverse" : "normal";
+                heart.innerHTML = "❤";
+                floatingHearts.appendChild(heart);
+            }
+        </script>
+    </div>
 
     <script>
         function checkLove() {
