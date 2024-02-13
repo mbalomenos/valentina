@@ -54,7 +54,7 @@
             position: absolute;
             width: 20px;
             height: 20px;
-            background-color: #ff99cc; /* Change heart color to pink */
+            background-color: transparent; /* Transparent heart color */
             clip-path: polygon(
                 50% 0%,
                 100% 20%,
@@ -72,38 +72,26 @@
                 transform: translate(-50%, -55%);
             }
         }
+
+        #floating-hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
     </style>
 </head>
 <body>
+    <div id="floating-hearts"></div>
 
     <h1>Ποιον αγαπάς;</h1>
-    
-    <label for="name">Type a name:</label>
+
+    <label for="name">Πληκτρολόγησε ένα όνομα:</label>
     <input type="text" id="name" name="name" required>
-    <button onclick="checkLove()">Check Love</button>
+    <button onclick="checkLove()">Έλεγξε την Αγάπη</button>
 
     <div id="loveMessage"></div>
-
-    <!-- Add pink hearts for the Love Message page -->
-    <div id="floating-hearts">
-        <!-- Add many floating hearts to the background -->
-        <div id="floating-hearts"></div>
-        <script>
-            const floatingHearts = document.getElementById("floating-hearts");
-            const numberOfHearts = 100;
-
-            for (let i = 0; i < numberOfHearts; i++) {
-                const heart = document.createElement("div");
-                heart.className = "heart";
-                heart.style.left = Math.random() * 100 + "vw";
-                heart.style.top = Math.random() * 100 + "vh";
-                heart.style.animationDuration = Math.random() * 3 + 1 + "s"; // Same animation speed as main page
-                heart.style.animationDirection = Math.random() < 0.5 ? "reverse" : "normal";
-                heart.innerHTML = "❤";
-                floatingHearts.appendChild(heart);
-            }
-        </script>
-    </div>
 
     <script>
         function checkLove() {
@@ -127,17 +115,31 @@
                     // Add more languages as needed
                 };
 
-                loveMessageDiv.innerHTML = '<h2>I Love You Βασιλική</h2>';
+                loveMessageDiv.innerHTML = '<h2>Σ\' αγαπώ Βασιλική</h2>';
                 
                 var languages = Object.keys(lovePhrases);
                 languages.forEach(function(language) {
                     loveMessageDiv.innerHTML += `<p>${lovePhrases[language]} (${language})</p>`;
                 });
             } else {
-                loveMessageDiv.innerHTML = '<p>No love message for this name.</p>';
+                loveMessageDiv.innerHTML = '<p>Δεν υπάρχει μήνυμα αγάπης για αυτό το όνομα.</p>';
             }
         }
-    </script>
 
+        // Add many floating hearts to the background
+        const floatingHearts = document.getElementById("floating-hearts");
+        const numberOfHearts = 100;
+
+        for (let i = 0; i < numberOfHearts; i++) {
+            const heart = document.createElement("div");
+            heart.className = "heart";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.top = Math.random() * 100 + "vh";
+            heart.style.animationDuration = Math.random() * 3 + 1 + "s"; // Same animation speed as main page
+            heart.style.animationDirection = Math.random() < 0.5 ? "reverse" : "normal";
+            heart.innerHTML = "❤";
+            floatingHearts.appendChild(heart);
+        }
+    </script>
 </body>
 </html>
