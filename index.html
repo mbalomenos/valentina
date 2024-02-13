@@ -70,6 +70,18 @@
             color: #333;
             margin-top: 30px;
         }
+
+        #loveButton {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #ff6666; /* Button color */
+            color: #fff; /* Text color */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -85,11 +97,11 @@
         <img src="https://github.com/mbalomenos/valentina/raw/main/viber_image_2024-02-03_10-07-21-650.jpg" alt="Your Special Moment" id="uploadedImage">
     </div>
 
+    <!-- Button to navigate to the Love Message page -->
+    <button id="loveButton" onclick="goToLoveMessage()">Κάνε κλικ στην αγάπη</button>
+
     <!-- Countdown to Valentine's Day -->
     <div id="countdown"></div>
-
-    <!-- Button to navigate to the Love Message page -->
-    <button onclick="goToLoveMessage()">Κάνε κλικ στην αγάπη</button>
 
     <script>
         function goToLoveMessage() {
