@@ -53,19 +53,14 @@
         }
 
         #imageBlock {
-            text-align: right; /* Align the image to the right */
+            text-align: center; /* Center the image */
             margin-top: 20px;
-            margin-right: 20px; /* Provide some margin from the top and right */
             color: #333; /* Change text color to dark */
-        }
-
-        #imageBlock h2 {
-            font-size: 24px;
         }
 
         #uploadedImage {
             max-width: 100%;
-            max-height: 200px; /* Set maximum height */
+            max-height: 400px; /* Set maximum height */
             border-radius: 10px;
         }
 
@@ -86,8 +81,6 @@
     </div>
 
     <div id="imageBlock">
-        <h2>Your Special Moment</h2>
-
         <!-- Display Image from GitHub -->
         <img src="https://github.com/mbalomenos/valentina/raw/main/viber_image_2024-02-03_10-07-21-650.jpg" alt="Your Special Moment" id="uploadedImage">
     </div>
@@ -95,7 +88,14 @@
     <!-- Countdown to Valentine's Day -->
     <div id="countdown"></div>
 
+    <!-- Button to navigate to the Love Message page -->
+    <button onclick="goToLoveMessage()">Κάνε κλικ στην αγάπη</button>
+
     <script>
+        function goToLoveMessage() {
+            window.location.href = "love_message.html";
+        }
+
         // Countdown to Valentine's Day
         const countdownElement = document.getElementById("countdown");
         const valentinesDay = new Date("2024-02-14T00:00:00Z").getTime();
